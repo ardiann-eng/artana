@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Seniman - Artana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B5A2B;
+            --secondary: #D4A373;
+            --accent: #A68A64;
+            --light: #FAEDCD;
+            --dark: #3A2D13;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FAF9F5;
+            color: #333;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .batik-pattern {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%238B5A2B" stroke-width="2" stroke-dasharray="5,5"/></svg>');
+            background-size: 40px 40px;
+            opacity: 0.1;
+        }
+        
+        .art-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Custom batik-inspired border */
+        .batik-border {
+            position: relative;
+        }
+        
+        .batik-border::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="10" viewBox="0 0 100 10"><path d="M0,5 Q25,10 50,5 T100,5" fill="none" stroke="%238B5A2B" stroke-width="2"/></svg>');
+            background-repeat: repeat-x;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #8B5A2B;
+        }
+        
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 12px;
+            width: 2px;
+            height: calc(100% - 12px);
+            background-color: #D4A373;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-amber-900 flex items-center justify-center text-white font-bold text-xl mr-2">A</div>
+                    <a href="index.html" class="text-2xl font-bold text-amber-900 heading-font">Artana</a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#home" class="text-gray-600 hover:text-amber-900">Beranda</a>
+                    <a href="index.html#gallery" class="text-gray-600 hover:text-amber-900">Galeri</a>
+                    <a href="index.html#artists" class="text-amber-900 hover:text-amber-700">Seniman</a>
+                    <a href="index.html#education" class="text-gray-600 hover:text-amber-900">Edukasi</a>
+                    <a href="index.html#about" class="text-gray-600 hover:text-amber-900">Tentang</a>
+                    <button class="bg-amber-900 text-white px-4 py-2 rounded-md hover:bg-amber-700 transition">VR Gallery</button>
+                </div>
+                
+                <div class="md:hidden">
+                    <button class="text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Artist Profile Header -->
+    <section class="py-12 bg-amber-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <!-- Artist Image -->
+                <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg border-4 border-white">
+                    <img src="https://images.pexels.com/photos/3094215/pexels-photo-3094215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Nyoman Artawa" class="w-full h-full object-cover">
+                </div>
+                
+                <!-- Artist Info -->
+                <div class="flex-1 text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold text-amber-900 mb-2 heading-font">Nyoman Artawa</h1>
+                    <p class="text-xl text-amber-800 mb-4">Pelukis Tradisional Bali</p>
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-6">
+                        <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm">Lukisan Tradisional</span>
+                        <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm">Bali</span>
+                        <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm">Alam & Budaya</span>
+                    </div>
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start gap-6 mb-6">
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-amber-900">15</p>
+                            <p class="text-gray-600 text-sm">Karya</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-amber-900">8</p>
+                            <p class="text-gray-600 text-sm">Tahun Berkarya</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-amber-900">4.8</p>
+                            <p class="text-gray-600 text-sm">Rating</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-amber-900">120+</p>
+                            <p class="text-gray-600 text-sm">Kolektor</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                        <button class="bg-amber-900 hover:bg-amber-700 text-white px-6 py-2 rounded-md transition">Hubungi Seniman</button>
+                        <button class="border border-amber-900 text-amber-900 hover:bg-amber-50 px-6 py-2 rounded-md transition">Lihat Galeri VR</button>
+                        <button class="text-amber-900 hover:text-amber-700 flex items-center gap-2">
+                            <i class="fas fa-heart"></i> Favorit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Artist Biography -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Biography Column -->
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl font-bold text-amber-900 mb-6 heading-font batik-border">Biografi</h2>
+                    
+                    <div class="prose max-w-none text-gray-700">
+                        <p class="mb-4">
+                            Nyoman Artawa lahir di Desa Ubud, Bali pada tahun 1985. Tumbuh di lingkungan yang kaya akan seni dan budaya, Nyoman mulai melukis sejak usia 12 tahun di bawah bimbingan ayahnya yang juga seorang pelukis tradisional Bali.
+                        </p>
+                        
+                        <p class="mb-4">
+                            Karya-karya Nyoman Artawa terkenal dengan keindahan pemandangan alam Bali yang menakjubkan, kehidupan sehari-hari masyarakat Bali, serta ritual dan upacara adat yang kaya akan makna filosofis. Gaya lukisannya menggabungkan teknik tradisional Bali dengan sentuhan modern yang memberikan kesan segar namun tetap mempertahankan nilai-nilai budaya Bali.
+                        </p>
+                        
+                        <p class="mb-4">
+                            Selama karirnya, Nyoman telah menggelar berbagai pameran di dalam dan luar negeri, termasuk di Jakarta, Yogyakarta, Singapura, dan Australia. Karyanya telah dikoleksi oleh berbagai kolektor seni dari seluruh dunia dan beberapa museum seni di Indonesia.
+                        </p>
+                        
+                        <p class="mb-4">
+                            Selain melukis, Nyoman juga aktif mengajar seni lukis tradisional Bali kepada generasi muda di desanya. Ia percaya bahwa seni tradisional perlu dilestarikan dan dikembangkan agar tetap relevan di era modern.
+                        </p>
+                        
+                        <blockquote class="italic border-l-4 border-amber-300 pl-4 my-6">
+                            "Seni lukis bagi saya bukan sekadar menciptakan keindahan visual, tetapi juga menjadi jembatan untuk menyampaikan kekayaan budaya dan filosofi hidup masyarakat Bali kepada dunia."
+                        </blockquote>
+                    </div>
+                    
+                    <!-- Artist Timeline -->
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-bold text-amber-900 mb-6 heading-font">Perjalanan Karir</h3>
+                        
+                        <div class="space-y-8">
+                            <div class="timeline-item pb-8">
+                                <h4 class="font-bold text-amber-900">1997</h4>
+                                <p class="text-gray-700">Mulai belajar melukis di bawah bimbingan ayahnya</p>
+                            </div>
+                            
+                            <div class="timeline-item pb-8">
+                                <h4 class="font-bold text-amber-900">2003</h4>
+                                <p class="text-gray-700">Lulus dari Sekolah Seni Rupa Indonesia (SSRI) Denpasar</p>
+                            </div>
+                            
+                            <div class="timeline-item pb-8">
+                                <h4 class="font-bold text-amber-900">2005</h4>
+                                <p class="text-gray-700">Pameran tunggal pertama "Warna-Warni Bali" di Ubud</p>
+                            </div>
+                            
+                            <div class="timeline-item pb-8">
+                                <h4 class="font-bold text-amber-900">2010</h4>
+                                <p class="text-gray-700">Mendirikan sanggar seni "Bali Mula" untuk mengajar anak-anak muda</p>
+                            </div>
+                            
+                            <div class="timeline-item pb-8">
+                                <h4 class="font-bold text-amber-900">2015</h4>
+                                <p class="text-gray-700">Pameran internasional pertama di Singapura</p>
+                            </div>
+                            
+                            <div class="timeline-item pb-8">
+                                <h4 class="font-bold text-amber-900">2018</h4>
+                                <p class="text-gray-700">Menerima penghargaan "Seniman Muda Berbakat" dari Pemerintah Provinsi Bali</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-amber-900">2022</h4>
+                                <p class="text-gray-700">Bergabung dengan platform Artana untuk memperluas jangkauan karya</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div>
+                    <!-- Artist Details -->
+                    <div class="bg-amber-50 rounded-lg p-6 mb-8">
+                        <h3 class="text-xl font-bold text-amber-900 mb-4 heading-font">Detail Seniman</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-gray-600 text-sm">Nama Lengkap</p>
+                                <p class="font-medium">I Nyoman Artawa</p>
+                            </div>
+                            
+                            <div>
+                                <p class="text-gray-600 text-sm">Tempat, Tanggal Lahir</p>
+                                <p class="font-medium">Ubud, Bali, 15 Maret 1985</p>
+                            </div>
+                            
+                            <div>
+                                <p class="text-gray-600 text-sm">Pendidikan</p>
+                                <p class="font-medium">Sekolah Seni Rupa Indonesia (SSRI) Denpasar</p>
+                            </div>
+                            
+                            <div>
+                                <p class="text-gray-600 text-sm">Aliran Seni</p>
+                                <p class="font-medium">Lukisan Tradisional Bali</p>
+                            </div>
+                            
+                            <div>
+                                <p class="text-gray-600 text-sm">Media</p>
+                                <p class="font-medium">Cat minyak, akrilik, kanvas</p>
+                            </div>
+                            
+                            <div>
+                                <p class="text-gray-600 text-sm">Tema</p>
+                                <p class="font-medium">Alam Bali, Kehidupan Sehari-hari, Ritual Adat</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+                        <h3 class="text-xl font-bold text-amber-900 mb-4 heading-font">Media Sosial</h3>
+                        
+                        <div class="space-y-4">
+                            <a href="#" class="flex items-center gap-3 text-gray-700 hover:text-amber-900">
+                                <i class="fab fa-instagram text-xl"></i>
+                                <span>@nyoman_artawa_bali</span>
+                            </a>
+                            
+                            <a href="#" class="flex items-center gap-3 text-gray-700 hover:text-amber-900">
+                                <i class="fab fa-facebook text-xl"></i>
+                                <span>Nyoman Artawa</span>
+                            </a>
+                            
+                            <a href="#" class="flex items-center gap-3 text-gray-700 hover:text-amber-900">
+                                <i class="fab fa-youtube text-xl"></i>
+                                <span>Nyoman Artawa Studio</span>
+                            </a>
+                            
+                            <a href="#" class="flex items-center gap-3 text-gray-700 hover:text-amber-900">
+                                <i class="fas fa-globe text-xl"></i>
+                                <span>www.nyomanartawa.com</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Upcoming Exhibitions -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-amber-900 mb-4 heading-font">Pameran Mendatang</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-medium text-amber-900">Festival Seni Bali 2023</p>
+                                <p class="text-gray-600 text-sm">15-20 Agustus 2023</p>
+                                <p class="text-gray-600 text-sm">Denpasar, Bali</p>
+                            </div>
+                            
+                            <div>
+                                <p class="font-medium text-amber-900">Pameran "Wajah Indonesia"</p>
+                                <p class="text-gray-600 text-sm">10-17 September 2023</p>
+                                <p class="text-gray-600 text-sm">Galeri Nasional, Jakarta</p>
+                            </div>
+                            
+                            <div>
+                                <p class="font-medium text-amber-900">Art Jakarta 2023</p>
+                                <p class="text-gray-600 text-sm">5-8 Oktober 2023</p>
+                                <p class="text-gray-600 text-sm">Jakarta Convention Center</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Artist Works -->
+    <section class="py-16 bg-amber-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-amber-900 mb-2 heading-font text-center">Koleksi Karya</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto text-center mb-12">Jelajahi karya-karya terbaik dari Nyoman Artawa yang menampilkan keindahan alam dan budaya Bali</p>
+            
+            <!-- Filter Controls -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="px-4 py-2 bg-amber-900 text-white rounded-full">Semua Karya</button>
+                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-100 rounded-full">Pemandangan Alam</button>
+                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-100 rounded-full">Kehidupan Sehari-hari</button>
+                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-100 rounded-full">Ritual & Upacara</button>
+            </div>
+            
+            <!-- Works Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Work 1 -->
+                <div class="art-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/2911545/pexels-photo-2911545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Sawah Bali" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition duration-300 flex items-center justify-center">
+                            <button class="bg-white text-amber-900 px-4 py-2 rounded-full opacity-0 hover:opacity-100 transition">Lihat Detail</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Sawah Bali di Pagi Hari</h3>
+                        <p class="text-gray-600 text-sm mb-2">2020 • Cat Minyak di Kanvas</p>
+                        <p class="text-gray-600 text-sm mb-3">80 x 100 cm</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-900">Rp 4.200.000</span>
+                            <button class="text-amber-900 hover:text-amber-700">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Work 2 -->
+                <div class="art-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/1194420/pexels-photo-1194420.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Upacara Melasti" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition duration-300 flex items-center justify-center">
+                            <button class="bg-white text-amber-900 px-4 py-2 rounded-full opacity-0 hover:opacity-100 transition">Lihat Detail</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Upacara Melasti</h3>
+                        <p class="text-gray-600 text-sm mb-2">2019 • Akrilik di Kanvas</p>
+                        <p class="text-gray-600 text-sm mb-3">90 x 120 cm</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-900">Rp 5.800.000</span>
+                            <button class="text-amber-900 hover:text-amber-700">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Work 3 -->
+                <div class="art-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/1616403/pexels-photo-1616403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Kehidupan Desa" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition duration-300 flex items-center justify-center">
+                            <button class="bg-white text-amber-900 px-4 py-2 rounded-full opacity-0 hover:opacity-100 transition">Lihat Detail</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Kehidupan Desa Bali</h3>
+                        <p class="text-gray-600 text-sm mb-2">2021 • Cat Minyak di Kanvas</p>
+                        <p class="text-gray-600 text-sm mb-3">75 x 95 cm</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-900">Rp 3.900.000</span>
+                            <button class="text-amber-900 hover:text-amber-700">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Work 4 -->
+                <div class="art-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/1292241/pexels-photo-1292241.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pura Ulun Danu" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition duration-300 flex items-center justify-center">
+                            <button class="bg-white text-amber-900 px-4 py-2 rounded-full opacity-0 hover:opacity-100 transition">Lihat Detail</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Pura Ulun Danu Beratan</h3>
+                        <p class="text-gray-600 text-sm mb-2">2018 • Cat Minyak di Kanvas</p>
+                        <p class="text-gray-600 text-sm mb-3">100 x 120 cm</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-900">Rp 6.200.000</span>
+                            <button class="text-amber-900 hover:text-amber-700">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Work 5 -->
+                <div class="art-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/3094215/pexels-photo-3094215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Penari Legong" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition duration-300 flex items-center justify-center">
+                            <button class="bg-white text-amber-900 px-4 py-2 rounded-full opacity-0 hover:opacity-100 transition">Lihat Detail</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Penari Legong</h3>
+                        <p class="text-gray-600 text-sm mb-2">2022 • Akrilik di Kanvas</p>
+                        <p class="text-gray-600 text-sm mb-3">85 x 110 cm</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-900">Rp 5.500.000</span>
+                            <button class="text-amber-900 hover:text-amber-700">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Work 6 -->
+                <div class="art-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/3771839/pexels-photo-3771839.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pasar Tradisional" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition duration-300 flex items-center justify-center">
+                            <button class="bg-white text-amber-900 px-4 py-2 rounded-full opacity-0 hover:opacity-100 transition">Lihat Detail</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Pasar Tradisional Bali</h3>
+                        <p class="text-gray-600 text-sm mb-2">2020 • Cat Minyak di Kanvas</p>
+                        <p class="text-gray-600 text-sm mb-3">90 x 100 cm</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-900">Rp 4.800.000</span>
+                            <button class="text-amber-900 hover:text-amber-700">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Work 7 -->
+                <div class="art-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/3760958/pexels-photo-3760958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pantai Kuta" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition duration-300 flex items-center justify-center">
+                            <button class="bg-white text-amber-900 px-4 py-2 rounded-full opacity-0 hover:opacity-100 transition">Lihat Detail</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Senja di Pantai Kuta</h3>
+                        <p class="text-gray-600 text-sm mb-2">2019 • Akrilik di Kanvas</p>
+                        <p class="text-gray-600 text-sm mb-3">80 x 100 cm</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-900">Rp 4.500.000</span>
+                            <button class="text-amber-900 hover:text-amber-700">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Work 8 -->
+                <div class="art-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/3760260/pexels-photo-3760260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Upacara Ngaben" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition duration-300 flex items-center justify-center">
+                            <button class="bg-white text-amber-900 px-4 py-2 rounded-full opacity-0 hover:opacity-100 transition">Lihat Detail</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Upacara Ngaben</h3>
+                        <p class="text-gray-600 text-sm mb-2">2021 • Cat Minyak di Kanvas</p>
+                        <p class="text-gray-600 text-sm mb-3">100 x 120 cm</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-900">Rp 7.200.000</span>
+                            <button class="text-amber-900 hover:text-amber-700">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button class="bg-amber-900 hover:bg-amber-700 text-white px-8 py-3 rounded-md text-lg font-medium transition shadow-lg">Lihat Lebih Banyak Karya</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Artwork Detail Modal -->
+    <div id="artwork-modal" class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg max-w-5xl w-full max-h-screen overflow-y-auto">
+            <div class="relative">
+                <!-- Close Button -->
+                <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <!-- Artwork Image -->
+                    <div class="h-96 md:h-auto">
+                        <img src="https://images.pexels.com/photos/2911545/pexels-photo-2911545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Sawah Bali di Pagi Hari" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Artwork Details -->
+                    <div class="p-8">
+                        <h2 class="text-2xl font-bold text-amber-900 mb-2 heading-font">Sawah Bali di Pagi Hari</h2>
+                        <p class="text-gray-600 mb-4">Karya oleh: <span class="text-amber-900 font-medium">Nyoman Artawa</span></p>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-gray-600">Tahun:</span>
+                                <span class="font-medium">2020</span>
+                            </div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-gray-600">Media:</span>
+                                <span class="font-medium">Cat Minyak di Kanvas</span>
+                            </div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-gray-600">Ukuran:</span>
+                                <span class="font-medium">80 x 100 cm</span>
+                            </div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-gray-600">Kondisi:</span>
+                                <span class="font-medium">Sangat Baik</span>
+                            </div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-gray-600">Tersedia:</span>
+                                <span class="font-medium text-green-600">Ya</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-bold text-amber-900 mb-2">Deskripsi</h3>
+                            <p class="text-gray-700">
+                                Lukisan ini menggambarkan keindahan sawah terasering di Bali pada pagi hari dengan cahaya matahari yang lembut menyinari hamparan hijau sawah. Karya ini menangkap keharmonisan antara alam dan budaya pertanian Bali yang telah berlangsung selama berabad-abad.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-bold text-amber-900 mb-2">Harga</h3>
+                            <p class="text-2xl font-bold text-amber-900">Rp 4.200.000</p>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <button class="bg-amber-900 hover:bg-amber-700 text-white px-6 py-2 rounded-md transition flex-1">Beli Sekarang</button>
+                            <button class="border border-amber-900 text-amber-900 hover:bg-amber-50 px-4 py-2 rounded-md transition">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="border border-amber-900 text-amber-900 hover:bg-amber-50 px-4 py-2 rounded-md transition">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Related Artists Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-amber-900 mb-2 heading-font text-center">Seniman Terkait</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto text-center mb-12">Temukan seniman lain dengan gaya dan tema serupa</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Related Artist 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
+                    <div class="relative h-64">
+                        <img src="https://images.pexels.com/photos/3760529/pexels-photo-3760529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="I Wayan Budiarta" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">I Wayan Budiarta</h3>
+                        <p class="text-gray-600 text-sm mb-3">Pelukis Tradisional Bali</p>
+                        <a href="seniman-profil.html" class="text-amber-900 hover:text-amber-700 font-medium">Lihat Profil</a>
+                    </div>
+                </div>
+                
+                <!-- Related Artist 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
+                    <div class="relative h-64">
+                        <img src="https://images.pexels.com/photos/3778966/pexels-photo-3778966.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Made Sukadana" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Made Sukadana</h3>
+                        <p class="text-gray-600 text-sm mb-3">Pelukis Alam Bali</p>
+                        <a href="#" class="text-amber-900 font-medium hover:text-amber-700 text-sm">Lihat Profil</a>
+                    </div>
+                </div>
+                
+                <!-- Related Artist 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
+                    <div class="relative h-64">
+                        <img src="https://images.pexels.com/photos/3760958/pexels-photo-3760958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Ketut Suwitra" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Ketut Suwitra</h3>
+                        <p class="text-gray-600 text-sm mb-3">Pelukis Kehidupan Bali</p>
+                        <a href="#" class="text-amber-900 font-medium hover:text-amber-700 text-sm">Lihat Profil</a>
+                    </div>
+                </div>
+                
+                <!-- Related Artist 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
+                    <div class="relative h-64">
+                        <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Ni Kadek Dwiyani" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="font-bold text-lg text-amber-900 mb-1">Ni Kadek Dwiyani</h3>
+                        <p class="text-gray-600 text-sm mb-3">Pelukis Budaya Bali</p>
+                        <a href="#" class="text-amber-900 font-medium hover:text-amber-700 text-sm">Lihat Profil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-amber-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-amber-900 font-bold text-lg mr-2">A</div>
+                        <span class="text-xl font-bold heading-font">Artana</span>
+                    </div>
+                    <p class="text-amber-100 mb-4">Platform digital untuk memamerkan, menjual, dan mengedukasi tentang seni tradisional dan kontemporer Indonesia</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-amber-200"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-amber-200"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white hover:text-amber-200"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white hover:text-amber-200"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Jelajahi</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#gallery" class="text-amber-100 hover:text-white">Galeri Karya</a></li>
+                        <li><a href="index.html#artists" class="text-amber-100 hover:text-white">Seniman</a></li>
+                        <li><a href="index.html#education" class="text-amber-100 hover:text-white">Edukasi Seni</a></li>
+                        <li><a href="#" class="text-amber-100 hover:text-white">VR Gallery</a></li>
+                        <li><a href="#" class="text-amber-100 hover:text-white">Event & Pameran</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Informasi</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-amber-100 hover:text-white">Tentang Kami</a></li>
+                        <li><a href="#" class="text-amber-100 hover:text-white">Cara Membeli</a></li>
+                        <li><a href="#" class="text-amber-100 hover:text-white">Bergabung Sebagai Seniman</a></li>
+                        <li><a href="#" class="text-amber-100 hover:text-white">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-amber-100 hover:text-white">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Hubungi Kami</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt mt-1"></i>
+                            <span class="text-amber-100">Jl. Seni Raya No. 123, Jakarta Selatan, Indonesia</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-phone mt-1"></i>
+                            <span class="text-amber-100">+62 21 1234 5678</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-envelope mt-1"></i>
+                            <span class="text-amber-100">info@artana.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-amber-800 mt-8 pt-8 text-center text-amber-200">
+                <p>&copy; 2023 Artana. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Simple JavaScript for Modal -->
+    <script>
+        // Get modal element
+        const modal = document.getElementById('artwork-modal');
+        
+        // Get all artwork cards
+        const artCards = document.querySelectorAll('.art-card');
+        
+        // Get close button
+        const closeBtn = modal.querySelector('button');
+        
+        // Add click event to all artwork cards
+        artCards.forEach(card => {
+            card.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Add click event to close button
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
