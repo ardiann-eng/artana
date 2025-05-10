@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Artana - Platform Seni Nusantara</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -80,14 +80,15 @@
 <body class="antialiased">
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-3">
+        <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                    <div class="w-12 h-12 rounded-full bg-amber-900 flex items-center justify-center text-white font-bold text-xl mr-2">A</div>
-                    <a href="#" class="text-2xl font-bold text-amber-900 heading-font">Artana</a>
+                    <div class="w-10 h-10 rounded-full bg-amber-900 flex items-center justify-center text-white font-bold text-xl mr-2">A</div>
+                    <a href="#" class="text-xl font-bold text-amber-900 heading-font">Artana</a>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-8">
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
                     <a href="#home" class="text-amber-900 hover:text-amber-700">Beranda</a>
                     <a href="#gallery" class="text-gray-600 hover:text-amber-900">Galeri</a>
                     <a href="#artists" class="text-gray-600 hover:text-amber-900">Seniman</a>
@@ -96,10 +97,23 @@
                     <button class="bg-amber-900 text-white px-4 py-2 rounded-md hover:bg-amber-700 transition">VR Gallery</button>
                 </div>
                 
+                <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button class="text-gray-600 focus:outline-none">
+                    <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu (Hidden by Default) -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-2">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-amber-900 hover:text-amber-700 py-2 px-2 rounded-md hover:bg-amber-50">Beranda</a>
+                    <a href="#gallery" class="text-gray-600 hover:text-amber-900 py-2 px-2 rounded-md hover:bg-amber-50">Galeri</a>
+                    <a href="#artists" class="text-gray-600 hover:text-amber-900 py-2 px-2 rounded-md hover:bg-amber-50">Seniman</a>
+                    <a href="#education" class="text-gray-600 hover:text-amber-900 py-2 px-2 rounded-md hover:bg-amber-50">Edukasi</a>
+                    <a href="#about" class="text-gray-600 hover:text-amber-900 py-2 px-2 rounded-md hover:bg-amber-50">Tentang</a>
+                    <button class="bg-amber-900 text-white px-4 py-2 rounded-md hover:bg-amber-700 transition w-full text-left">VR Gallery</button>
                 </div>
             </div>
         </div>
@@ -139,27 +153,35 @@
     <section id="gallery" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4 heading-font batik-border">Galeri Karya</h2>
+                <span class="inline-block text-amber-700 text-sm font-semibold tracking-wider uppercase mb-2">Koleksi Terbaik</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4 heading-font relative inline-block">
+                    Galeri Karya
+                    <span class="absolute -bottom-3 left-0 w-full h-1 bg-amber-700 rounded-full"></span>
+                </h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Temukan keindahan seni tradisional dan kontemporer dari berbagai daerah di Indonesia</p>
             </div>
             
             <!-- Filter Controls -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="px-4 py-2 bg-amber-900 text-white rounded-full">Semua</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Jawa</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Bali</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Sumatera</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Kalimantan</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Sulawesi</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Papua</button>
+            <div class="filter-scroll mb-12">
+                <div class="filter-scroll-inner">
+                    <button class="px-4 py-2 bg-amber-900 text-white rounded-full whitespace-nowrap">Semua</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Jawa</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Bali</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Sumatera</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Kalimantan</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Sulawesi</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Papua</button>
+                </div>
             </div>
             
-            <div class="flex flex-wrap justify-center gap-4 mb-8">
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Lukisan</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Patung</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Tekstil</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Keramik</button>
-                <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full">Digital Art</button>
+            <div class="filter-scroll mb-8">
+                <div class="filter-scroll-inner">
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full whitespace-nowrap">Lukisan</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Patung</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Tekstil</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Keramik</button>
+                    <button class="px-4 py-2 border border-amber-900 text-amber-900 hover:bg-amber-50 rounded-full ml-2 whitespace-nowrap">Digital Art</button>
+                </div>
             </div>
             
             <!-- Art Grid -->
@@ -343,7 +365,11 @@
        <section id="artists" class="py-20 bg-amber-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4 heading-font batik-border">Seniman Nusantara</h2>
+                <span class="inline-block text-amber-700 text-sm font-semibold tracking-wider uppercase mb-2">Talenta Indonesia</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4 heading-font relative inline-block">
+                    Seniman Nusantara
+                    <span class="absolute -bottom-3 left-0 w-full h-1 bg-amber-700 rounded-full"></span>
+                </h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Temui para seniman berbakat dari seluruh Indonesia yang membawa keindahan seni tradisional dan kontemporer</p>
             </div>
             
@@ -661,11 +687,15 @@
 
        <!-- Education Section -->
        <section id="education" class="py-20 bg-amber-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4 heading-font batik-border">Edukasi Seni</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Pelajari lebih dalam tentang seni dan budaya Indonesia melalui konten edukasi yang informatif dan menarik</p>
-            </div>
+           <div class="container mx-auto px-6">
+               <div class="text-center mb-16">
+                   <span class="inline-block text-amber-700 text-sm font-semibold tracking-wider uppercase mb-2">Pengetahuan Seni</span>
+                   <h2 class="text-3xl md:text-4xl font-bold text-amber-900 mb-4 heading-font relative inline-block">
+                       Edukasi Seni
+                       <span class="absolute -bottom-3 left-0 w-full h-1 bg-amber-700 rounded-full"></span>
+                   </h2>
+                   <p class="text-gray-600 max-w-2xl mx-auto">Pelajari lebih dalam tentang seni dan budaya Indonesia melalui konten edukasi yang informatif dan menarik</p>
+               </div>
             
             <!-- Education Categories -->
             <div class="flex flex-wrap justify-center gap-4 mb-12">
@@ -937,6 +967,32 @@
         </div>
     </section>
 
+    <!-- Bottom Navigation untuk Mobile -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50">
+        <div class="flex justify-around items-center py-2">
+            <a href="#home" class="flex flex-col items-center px-3 py-2 text-amber-900">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">Beranda</span>
+            </a>
+            <a href="#gallery" class="flex flex-col items-center px-3 py-2 text-gray-600">
+                <i class="fas fa-image text-xl"></i>
+                <span class="text-xs mt-1">Galeri</span>
+            </a>
+            <a href="#artists" class="flex flex-col items-center px-3 py-2 text-gray-600">
+                <i class="fas fa-user-alt text-xl"></i>
+                <span class="text-xs mt-1">Seniman</span>
+            </a>
+            <a href="#education" class="flex flex-col items-center px-3 py-2 text-gray-600">
+                <i class="fas fa-book text-xl"></i>
+                <span class="text-xs mt-1">Edukasi</span>
+            </a>
+            <a href="#about" class="flex flex-col items-center px-3 py-2 text-gray-600">
+                <i class="fas fa-info-circle text-xl"></i>
+                <span class="text-xs mt-1">Tentang</span>
+            </a>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-amber-900 text-white py-12">
         <div class="container mx-auto px-6">
@@ -1051,6 +1107,35 @@
                             behavior: 'smooth'
                         });
                     }
+                });
+            });
+            
+            // JavaScript untuk Menu Mobile
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                
+                // Ganti ikon menu saat dibuka/ditutup
+                const icon = mobileMenuButton.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+            
+            // Tutup menu saat link diklik
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 });
             });
         });
